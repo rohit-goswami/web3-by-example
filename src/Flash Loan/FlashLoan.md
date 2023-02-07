@@ -2,7 +2,7 @@
 
 `Idea was to enable a non-collateral borrowing service.`
 
-<put flash loan imeg here>
+<img width="319" alt="image" src="https://user-images.githubusercontent.com/15854015/217230000-0abe89e4-a712-48d4-8e53-f30f7fe9bc32.png">
 
 ### General Workflow 
 
