@@ -19,3 +19,13 @@ Let's break down Flash Loan transaction into 5 steps:
 3. Users will use borrowed assets to execute other operations.
 4. After completion of execution, *Users* hae to returns the borrowed amount with or withour the extra fee carged by providers.
 5. *Flash Loan Providers* will check their balance and in case of insufficient funds return they can revert the whole transaction.
+
+``You see there are 5 steps invloved but due to atomicity of trasaction all those steps are finished in single transaction.😱``
+
+## Flash Loan Providers
+
+### **Aave**
+
+Aave provides a native function ```flashLoan(address _receiver, address _reserve, uint256 _amount, bytes calldata _params)```  in **[LendingPool](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/lendingpool/LendingPool.sol#L843)** contract to trigger flash loan. Aave also charges some fee for using flash loan service. 
+
+
