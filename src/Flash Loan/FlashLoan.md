@@ -37,7 +37,7 @@ Users Develop Smart Contract consist of one execution function and one entry-poi
 
 **Identifying flash loan transaction from Aave**
 
-Aave emits an event FlashLoan wheneve the fucntion FlashLoan is executed, therefore we can easily identify the flash loan tx. from Aave.
+Aave emits an event FlashLoan whenever the fucntion FlashLoan is executed, therefore we can easily identify the flash loan tx. from Aave.
 
 
 
