@@ -26,10 +26,21 @@ Let's break down Flash Loan transaction into 5 steps:
 
 ### **Aave**
 
-Aave provides a native function 
+Aave provides a native function in **[LendingPool](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/lendingpool/LendingPool.sol#L843)** contract to trigger flash loan. Aave also charges some fee for using flash loan service. 
+
 ```solidity= 
 flashLoan(address _receiver, address _reserve, uint256 _amount, bytes calldata _params)
 ```
-in **[LendingPool](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/lendingpool/LendingPool.sol#L843)** contract to trigger flash loan. Aave also charges some fee for using flash loan service. 
+**Prepare Flash Loan contract with Aave**
+
+Users Develop Smart Contract consist of one execution function and one entry-point function. Here execution function will contains users' designed operation for the loaned assets. Execution function has to be formed based on ```executeOperation``` [function](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/flashloan/interfaces/IFlashLoanReceiver.sol#L11) in Base contract. In entry point function user need to prepare the function ```flashLoan``` to request a loan. Then, follow up with the function ```executeOperation``` to run the designed logic. Lastly return the loaned assets with [function](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/flashloan/base/FlashLoanReceiverBase.sol#L24) ```transferFundBackToPoolInternal ```. If aave discovers unbalanced vault state then it will revert the entire transaction. After you code your smart contract, deploy it to the chain and use Flash Loan service from Aave by invoking the entry-point function.
+
+**Identifying flash loan transaction from Aave**
+
+Aave emits an event FlashLoan wheneve the fucntion FlashLoan is executed, therefore we can easily identify the flash loan tx. from Aave.
+
+
+
+
 
 
