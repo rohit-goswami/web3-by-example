@@ -33,11 +33,23 @@ flashLoan(address _receiver, address _reserve, uint256 _amount, bytes calldata _
 ```
 **Prepare Flash Loan contract with Aave**
 
-Users Develop Smart Contract consist of one execution function and one entry-point function. Here execution function will contains users' designed operation for the loaned assets. Execution function has to be formed based on ```executeOperation``` [function](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/flashloan/interfaces/IFlashLoanReceiver.sol#L11) in Base contract. In entry point function user need to prepare the function ```flashLoan``` to request a loan. Then, follow up with the function ```executeOperation``` to run the designed logic. Lastly return the loaned assets with [function](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/flashloan/base/FlashLoanReceiverBase.sol#L24) ```transferFundBackToPoolInternal ```. If aave discovers unbalanced vault state then it will revert the entire transaction. After you code your smart contract, deploy it to the chain and use Flash Loan service from Aave by invoking the entry-point function.
+Users Develop Smart Contract consist of one execution function and one entry-point function. Here execution function will contains users' designed operation for the loaned assets. Execution function has to be formed based on ```executeOperation``` [function](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/flashloan/interfaces/IFlashLoanReceiver.sol#L11) in Base contract. In entry point function user need to prepare the function ```flashLoan``` to request a loan. Then, follow up with the function ```executeOperation``` to run the designed logic. Lastly return the loaned assets with [function](https://github.com/aave/aave-protocol/blob/4b4545fb583fd4f400507b10f3c3114f45b8a037/contracts/flashloan/base/FlashLoanReceiverBase.sol#L24) ```transferFundBackToPoolInternal ```. If Aave discovers unbalanced vault state then it will revert the entire transaction. After you code your smart contract, deploy it to the chain and use Flash Loan service from Aave by invoking the entry-point function.
+
+👉 **[Aave v3 Flash Loan](https://docs.aave.com/developers/guides/flash-loans)** 
 
 **Identifying flash loan transaction from Aave**
 
 Aave emits an event FlashLoan whenever the fucntion FlashLoan is executed, therefore we can easily identify the flash loan tx. from Aave.
+
+### **dYdX**
+
+There is no native Flash Loan Feature available in dYdX. However, dYdX's contract Operation has a [function](https://github.com/dydxprotocol/solo/blob/0412e9457c113f663117fa6ce1048a06839ba388/contracts/protocol/Operation.sol#L54) called ```operate``` that enables to bring a series of operations into one transaction to achieve Flash Loan for users. Best thing, dYdX does not charge any fee for invoking the function ```operate```.
+
+**Prepare Flash Loan contract with dYdX**
+
+Similar to Aave, we need to code a smart contract containing one execution function, which contains users' operating logic on the loaned assets, and one entry point function.  In the entry-point function, users first need to sequentially organize a list of provided (by dYdX) actions: withdraw, callFunction and deposit.
+
+
 
 
 
