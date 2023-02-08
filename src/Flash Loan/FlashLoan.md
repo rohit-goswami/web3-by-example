@@ -17,7 +17,7 @@ Let's break down Flash Loan transaction into 5 steps:
 1. *Flash Loan Providers* transfers requested assets to the *Users*.
 2. Invoke *Users's* pre-designed operations.
 3. Users will use borrowed assets to execute other operations.
-4. After completion of execution, *Users* hae to returns the borrowed amount with or withour the extra fee carged by providers.
+4. After completion of execution, *Users* have to return the borrowed amount with or without the extra fee charged by providers.
 5. *Flash Loan Providers* will check their balance and in case of insufficient funds return they can revert the whole transaction.
 
 ``You see there are 5 steps invloved but due to atomicity of trasaction all those steps are finished in single transaction.😱``
