@@ -21,7 +21,7 @@ contract FlashLoan {
 
 
     error Unauthorized();
-    error TokenNotReturned();
+    error TokensNotReturned();
     error invalidPercentage();
 
 
