@@ -1,8 +1,6 @@
 pragma solidity 0.8.17;
 
-import "./Interfaces/IERC20.sol";
-import "./Interfaces/IERC3156FlashBorrower.sol";
-import "./Interfaces/IERC3156FlashLender.sol";
+' CVR
 
 
 contract FlashBorrower is IERC3156FlashBorrower {
@@ -48,7 +46,7 @@ contract FlashBorrower is IERC3156FlashBorrower {
     ) public {
         bytes memory data = abi.encode(Action.NORMAL);
         uint256 _allowance = IERC20(token).allowance(address(this), address(lender));
-        uint256 _fee = lender.flashFee(toke, amount);
+        uint256 _fee = lender.flashFee(token, amount);
         uint256 _repayment = amount + _fee;
         IERC20(token).approve(address(lender), _allowance + _repayment);
         lender.flashLoan(this, token, amount, data);
