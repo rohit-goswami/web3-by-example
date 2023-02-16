@@ -1,6 +1,9 @@
 pragma solidity 0.8.17;
 
-' CVR
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
+import "./interfaces/IERC3156FlashBorrower.sol";
+import "./interfaces/IERC3156FlashLender.sol";
 
 
 contract FlashBorrower is IERC3156FlashBorrower {
